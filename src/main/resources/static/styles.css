@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('/images/backgroundImage.jpg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+.login-box {
+	background-color: transparent;
+	padding: 40px;
+	border-radius: 12px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+	text-align: center;
+	width: 300px;
+	backdrop-filter: blur(1px);
+	margin-right: 30%;
+}
+
+.login-box h1,
+.login-box h2 {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+.login-box input::placeholder {
+  color: #ddd;
+}
+
+.login-box .btn {
+  background: #ff2fb3;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-box .links {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-box .links a {
+  color: #fff;
+  text-decoration: underline;
+  display: block;
+  margin: 5px 0;
+}
+
+.chat-icon {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: bounce 1.5s infinite;
+}
+
+.chat-icon::before {
+  content: "💬";
+  font-size: 24px;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+}
