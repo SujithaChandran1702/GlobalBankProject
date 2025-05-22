@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Global Bank Dashboard</title>
+<link rel="stylesheet" href="Dashboard.css" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h2>GLOBAL BANK</h2>
+			<nav>
+				<a href="#">Dashboard</a> <a href="#"
+					onclick="toggleAccountSummary()">Accounts</a> <a href="#">Transfers</a>
+				<span id="userDisplay" class="user-name"></span> <img
+					src="/images/Logout_Icon.png" alt="Logout" class="logout-img"
+					onclick="logout()">
+			</nav>
+		</header>
+
+		<main>
+			<section class="dashboard">
+				<h1>Welcome to Your Digital Dashboard</h1>
+				<p>Manage your finances, check your balance, and explore
+					services</p>
+
+				<div class="cards">
+					<div class="card" id="accountSummaryCard"
+						onclick="toggleAccountSummary()">
+						<h3>Account Summary</h3>
+						<p>Quick view of your account details and  balance</p>
+					</div>
+					<div class="card" id="globalPayCard" onclick="goToGlobalPay()">
+						<h3>Global pay</h3>
+						<p>Send money securely between accounts or to other users</p>
+					</div>
+					<div class="card">
+						<h3>Digital Rupee</h3>
+						<p>Access your digital rupee wallet and manage crypto assets</p>
+					</div>
+				</div>
+			</section>
+
+			<button class="check-btn" onclick="toggleBalance()">Check
+				Balance</button>
+			<button class="check-btn history-btn" onclick="toggleHistory()">History</button>
+
+			<aside id="balancePanel" class="balance-panel">
+				<span class="close-btn" onclick="toggleBalance()">&times;</span>
+				<h2>Account Balance</h2>
+				<p>₹ 1,25,000.00</p>
+			</aside>
+
+			<aside id="historyPanel" class="balance-panel">
+				<span class="close-btn" onclick="toggleHistory()">&times;</span>
+				<h2>Transaction History</h2>
+				<ul>
+					<li>Sent ₹5,000 to Raj (May 10)</li>
+					<li>Received ₹2,000 from UPI (May 8)</li>
+					<li>Withdrawn ₹1,000 (May 5)</li>
+				</ul>
+			</aside>
+
+			<!-- ✅ Account Summary Modal Popup -->
+			<div id="accountSummaryPanel" class="popup-overlay">
+				<div class="popup-content">
+					<span class="close-btn" onclick="toggleAccountSummary()">&times;</span>
+					<h2>Account Summary</h2>
+					<div class="account-info">
+						<div>
+							<label>Account Holder</label><span id="holderName">-</span>
+						</div>
+						<div>
+							<label>Account Number</label><span id="accountNumber">-</span>
+						</div>
+						<div>
+							<label>Balance</label><span id="balanceAmount">-</span>
+						</div>
+						<div>
+							<label>Account Type</label><span id="accountType">-</span>
+						</div>
+						<div>
+							<label>IFSC Code</label><span id="ifscCode">-</span>
+						</div>
+						<div>
+							<label>PAN Number</label><span id="panNumber">-</span>
+						</div>
+						<div>
+							<label>Phone Number</label><span id="phoneNumber">-</span>
+						</div>
+						<div>
+							<label>Email</label><span id="email">-</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>© 2025 Global Bank. All rights reserved.</footer>
+	</div>
+
+	<script src="/js/Dashboard.js"></script>
+</body>
+</html>

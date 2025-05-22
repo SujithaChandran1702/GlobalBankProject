@@ -1,0 +1,346 @@
+/* Reset & Base */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body, html {
+	font-family: 'Poppins', sans-serif;
+	background: url('/images/Home_BackgroundImage.jpg') no-repeat center
+		center fixed;
+	background-size: cover;
+	color: white;
+	height: 100%;
+}
+
+/* Header */
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 40px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+header h2 {
+	color: #ff2fb2;
+}
+
+header nav {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+header nav a {
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+header nav a:hover {
+	text-decoration: underline;
+}
+
+.logout-img {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logout-img:hover {
+	transform: scale(1.2);
+	opacity: 0.8;
+}
+
+/* Main */
+main {
+	padding: 40px;
+	position: relative;
+}
+
+.dashboard h1 {
+	font-size: 28px;
+	margin-bottom: 10px;
+	color: #ff2fb2;
+}
+
+.dashboard p {
+	font-size: 16px;
+	margin-bottom: 30px;
+}
+
+.cards {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.card {
+	background: rgba(0, 0, 0, 0.5);
+	border: 1px solid #ff2fb2;
+	padding: 20px;
+	width: 250px;
+	border-radius: 12px;
+	transition: transform 0.3s ease;
+	cursor: pointer;
+}
+
+.card h3 {
+	color: #ff2fb2;
+	margin-bottom: 10px;
+}
+
+.card:hover {
+	transform: scale(1.05);
+}
+
+/* Buttons */
+.check-btn {
+	position: fixed;
+	right: 0;
+	background-color: #ff2fb2;
+	color: white;
+	padding: 15px;
+	border: none;
+	border-radius: 8px 0 0 8px;
+	cursor: pointer;
+	z-index: 1000;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.check-btn:hover {
+	transform: scale(1.2);
+	opacity: 0.8;
+}
+
+.check-btn:nth-of-type(1) {
+	top: calc(50% - 30px);
+}
+
+.check-btn.history-btn {
+	top: calc(60% - 30px);
+}
+
+/* Panels (Balance & History) */
+.balance-panel {
+	position: fixed;
+	top: 0;
+	right: -350px;
+	width: 300px;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	padding: 40px 20px;
+	box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+	transition: right 0.4s ease;
+	z-index: 1000;
+}
+
+.balance-panel.open {
+	right: 0;
+}
+
+.balance-panel h2 {
+	margin-top: 60px;
+	font-size: 22px;
+	color: #ff2fb2;
+}
+
+.balance-panel p {
+	font-size: 26px;
+	font-weight: bold;
+	margin-top: 15px;
+}
+
+.balance-panel ul {
+	margin-top: 20px;
+	list-style: none;
+	padding-left: 0;
+}
+
+.balance-panel li {
+	margin-bottom: 10px;
+}
+
+/* Account Details Section */
+#accountDetails {
+	display: none;
+	margin-top: 40px;
+	background: rgba(0, 0, 0, 0.6);
+	padding: 30px;
+	border-radius: 12px;
+	border: 1px solid #ff2fb2;
+	color: white;
+}
+
+#accountDetails h2 {
+	color: #ff2fb2;
+	margin-bottom: 20px;
+}
+
+.account-info {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px 40px;
+}
+
+.account-info div {
+	margin-bottom: 10px;
+}
+
+.account-info label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+	color: #ff2fb2;
+}
+
+.account-info span {
+	font-size: 16px;
+}
+
+/* Account Summary Panel (Popup) */
+#accountSummaryPanel {
+	position: fixed;
+	top: 0;
+	right: -400px;
+	width: 350px;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.85);
+	padding: 40px 20px;
+	box-shadow: -2px 0 15px rgba(0, 0, 0, 0.7);
+	transition: right 0.4s ease;
+	z-index: 1001;
+	overflow-y: auto;
+}
+
+#accountSummaryPanel.open {
+	right: 0;
+}
+
+#accountSummaryPanel h2 {
+	color: #ff2fb2;
+	margin-top: 7px;
+	margin-bottom: 20px;
+}
+
+#accountSummaryPanel .account-info {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+}
+
+#accountSummaryPanel .account-info label {
+	color: #ff2fb2;
+	font-weight: bold;
+}
+
+#accountSummaryPanel .account-info span {
+	font-size: 15px;
+	color: #fff;
+}
+
+/* Close button */
+.close-btn {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 24px;
+	cursor: pointer;
+	color: #ff2fb2;
+}
+
+/* Footer */
+footer {
+	text-align: center;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+/* ✅ Account Summary Modal Popup */
+#accountSummaryPanel {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6); /* Dimmed background */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* When open, show the modal */
+#accountSummaryPanel.open {
+	visibility: visible;
+	opacity: 1;
+}
+
+/* Modal box */
+.popup-content {
+	background-color: #1a1a1a;
+	padding: 30px 40px;
+	border-radius: 12px;
+	width: 500px;
+	max-width: 90%;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+	position: relative;
+	color: white;
+}
+
+/* Header */
+.popup-content h2 {
+	color: #ff2fb2;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+/* Account info grid */
+.account-info {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px 30px;
+}
+
+/* Info items */
+.account-info div {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Labels and values */
+.account-info label {
+	color: #ff2fb2;
+	font-weight: bold;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+
+.account-info span {
+	font-size: 14px;
+	color: #fff;
+}
+
+/* Close button */
+.close-btn {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	font-size: 24px;
+	cursor: pointer;
+	color: #ff2fb2;
+	transition: transform 0.3s ease;
+}
+
+.close-btn:hover {
+	transform:none;
+}

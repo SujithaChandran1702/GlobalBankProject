@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quick Pay</title>
+  <link rel="stylesheet" href="quick-pay.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <div class="quick-pay-container">
+    <h1>Quick Pay</h1>
+    <div class="options">
+      <div class="card" onclick="openPopup()">
+        <i class="fas fa-university icon"></i>
+        <h2>GB Account</h2>
+        <p>Send money to another Global Bank account</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-building icon"></i>
+        <h2>Other Bank</h2>
+        <p>Transfer using IFSC code</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-user-plus icon"></i>
+        <h2>Add Beneficiary</h2>
+        <p>Add a new recipient to your list</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Modal -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2>Quick Transfer - GB A/C</h2>
+
+      <form class="popup-form" onsubmit="event.preventDefault(); alert('Form Submitted!');">
+        <label>Pay New Beneficiary</label>
+
+        <label for="accountType">Account Type:</label>
+        <select id="accountType" required>
+          <option value="">Select</option>
+          <option value="saving">Saving</option>
+          <option value="current">Current</option>
+        </select>
+
+        <label for="debitName">Debit Account Name:</label>
+        <input type="text" id="debitName" required />
+
+        <label for="debitNumber">Debit Account Number:</label>
+        <input type="text" id="debitNumber" required />
+
+        <h3>Enter New Beneficiary Details</h3>
+
+        <label for="beneficiaryName">Name*:</label>
+        <input type="text" id="beneficiaryName" required />
+
+        <label for="accountNumber">Account Number*:</label>
+        <input type="text" id="accountNumber" required />
+
+        <label for="reAccountNumber">Re-enter Account Number*:</label>
+        <input type="text" id="reAccountNumber" required />
+
+        <label for="amount">Enter Amount:</label>
+        <input type="number" id="amount" required />
+
+        <label for="purpose">Purpose:</label>
+        <select id="purpose" required>
+          <option value="">Select</option>
+          <option value="bill">Bill Payment</option>
+          <option value="gift">Gift</option>
+          <option value="family">Family Support</option>
+        </select>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/QuickPay.js"></script>
+</body>
+</html>

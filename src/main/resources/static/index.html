@@ -8,21 +8,52 @@
 </head>
 <body>
 
-	<div class="login-box">
+	<!-- Success Message -->
+	<div id="successMessage" class="success-message hidden">
+		Registration Successful!</div>
+
+	<!-- Login Form -->
+	<div class="login-box" id="loginContainer">
 		<h1>GLOBAL BANK</h1>
-		<h2>Bank Login</h2>
-		<input type="text" placeholder="Username" /> <input type="password"
-			placeholder="Password" />
-		<button class="btn">Log In</button>
+		<h2>Login</h2>
+		<form id="loginForm" action="/v1/pagecontroller/login" method="post">
+			<input type="text" name="userName" placeholder="Username" required />
+			<input type="password" name="password" placeholder="Password"
+				required />
+			<button class="btn" type="submit">Log In</button>
+			<p class="message error" id="loginError" style="display: none;">Invalid
+				credentials. Please try again.</p>
+		</form>
 		<div class="links">
-			<a href="#">Forgot Password?</a> <a href="#">Sign Up</a>
+			<a href="#">Forgot Password?</a> <a href="#" onclick="showSignUp()">Sign
+				Up</a>
 		</div>
 	</div>
-	<div>><p> Hi every one </p></div>
 
+	<!-- Sign Up Form -->
+	<div class="login-box hidden" id="signUpContainer">
+		<h1>GLOBAL BANK</h1>
+		<h2>Sign Up</h2>
+		<form id="signUpFormElement">
+			<input type="text" name="userName" placeholder="Username" required />
+			<input type="email" name="email" placeholder="Email" required /> <input
+				type="password" name="password" placeholder="Password" required />
+			<input type="text" name="phoneNumber" placeholder="Mobile Number"
+				required /> <input type="text" name="panNumber"
+				placeholder="PAN Number" required />
+			<button class="btn" type="submit">Register</button>
+			<p class="message success" id="registerSuccess"
+				style="display: none;">Registration successful! Redirecting to
+				login...</p>
+		</form>
+		<div class="links">
+			<a href="#" onclick="showLogin()">Back to Login</a>
+		</div>
+	</div>
+	
 	<div class="chat-icon" title="Chat with us"></div>
-
 	<footer>&copy; 2025 Global Bank. All rights reserved.</footer>
 
+	<script src="/js/script.js"></script>
 </body>
 </html>
