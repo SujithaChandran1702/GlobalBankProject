@@ -21,4 +21,26 @@ public class UserDetailsService {
 				user.getIfscCode(), user.getPanNumber(), user.getPhoneNumber(), user.getEmail());
 	}
 
+	public void transferMoney(String fromUsername, String toAccountNumber, double amount) {
+		UserDetails sender = userRepository.findByUserName(fromUsername)
+				.orElseThrow(() -> new IllegalArgumentException("Sender not found"));
+
+		UserDetails receiver = userRepository.findByAccountNumber(toAccountNumber)
+				.orElseThrow(() -> new IllegalArgumentException("Recipient not found"));
+
+		if (amount <= 0) {
+			throw new IllegalArgumentException("Amount must be greater than zero");
+		}
+
+		if (sender.getBalance() < amount) {
+			throw new IllegalArgumentException("Insufficient balance");
+		}
+
+		sender.setBalance(sender.getBalance() - amount);
+		receiver.setBalance(receiver.getBalance() + amount);
+
+		userRepository.save(sender);
+		userRepository.save(receiver);
+	}
+
 }

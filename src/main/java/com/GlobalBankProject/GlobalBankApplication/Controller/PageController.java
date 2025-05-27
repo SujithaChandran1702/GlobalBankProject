@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +38,21 @@ public class PageController {
 			return "redirect:/index.html?error=true";
 		}
 	}
+	
+	
+	/*
+	 * @PostMapping("/apilogin")
+	 * 
+	 * @ResponseBody public ResponseEntity<?> apiLogin(@RequestBody Map<String,
+	 * String> credentials) { String userName = credentials.get("userName"); String
+	 * password = credentials.get("password");
+	 * 
+	 * if (service.validateUser(userName, password)) { Map<String, String> response
+	 * = new HashMap<>(); response.put("username", userName); return
+	 * ResponseEntity.ok(response); } else { return
+	 * ResponseEntity.status(401).body("Invalid username or password"); } }
+	 */
+
 
 	@GetMapping("/")
 	public String loadLoadingPage() {

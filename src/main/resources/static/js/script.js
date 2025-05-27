@@ -9,13 +9,24 @@ function showLogin() {
 }
 
 document.getElementById("signUpFormElement").addEventListener("submit", function(event) {
-	event.preventDefault(); // Prevent normal form submission
+	event.preventDefault();
 
-	const formData = new FormData(this);
+	const form = event.target;
+
+	const data = {
+		userName: form.userName.value,
+		password: form.password.value,
+		email: form.email.value,
+		phoneNumber: form.phoneNumber.value,
+		panNumber: form.panNumber.value
+	};
 
 	fetch("/v1/registrationcontroller/signup", {
 		method: "POST",
-		body: formData
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(data)
 	})
 		.then(async response => {
 			if (!response.ok) {
@@ -39,6 +50,39 @@ document.getElementById("signUpFormElement").addEventListener("submit", function
 			console.error("Error:", error);
 		});
 });
+
+
+/*document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  fetch("/v1/pagecontroller/apilogin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ userName: username, password: password })
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Login failed");
+      }
+      return res.json();
+    })
+    .then((response) => {
+      // Store username in sessionStorage
+      sessionStorage.setItem("username", response.username);
+
+      // Redirect to Quick Pay page or dashboard
+      window.location.href = "/quick-pay.html";
+    })
+    .catch((error) => {
+      console.error("Error during login:", error);
+      alert("Invalid username or password");
+    });
+});*/
 
 
 function showSuccessMessage() {

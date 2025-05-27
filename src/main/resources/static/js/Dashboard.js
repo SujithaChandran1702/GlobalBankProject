@@ -19,9 +19,14 @@ function toggleBalance() {
 }
 
 // Toggle history panel
-function toggleHistory() {
+/*function toggleHistory() {
 	console.log("Toggling history");
-	document.getElementById("historyPanel").classList.toggle("open");
+	window.location.href = "history.html";
+}*/
+
+function goToHistory(){
+	console.log("Going to History page");
+	window.location.href="history.html";
 }
 
 // Logout function
@@ -103,10 +108,10 @@ function toggleBalance() {
 }
 
 // Toggle history panel
-function toggleHistory() {
+/*function toggleHistory() {
 	console.log("Toggling history");
 	document.getElementById("historyPanel").classList.toggle("open");
-}
+}*/
 
 // Logout function
 function logout() {
@@ -143,4 +148,19 @@ function goToGlobalPay() {
 	window.location.href = 'globalpay.html';
 }
 
+function getUsernameFromURL() {
+	const params = new URLSearchParams(window.location.search);
+	return params.get('username');
+}
+
+// On page load, extract and store username in sessionStorage
+window.onload = function() {
+	const username = getUsernameFromURL();
+	if (username) {
+		sessionStorage.setItem("username", username);
+		console.log("Username stored in sessionStorage:", username);
+	} else {
+		console.warn("No username found in URL");
+	}
+};
 

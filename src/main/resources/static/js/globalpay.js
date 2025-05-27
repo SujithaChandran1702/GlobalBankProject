@@ -1,28 +1,37 @@
+// Navigation Functions
 function openQuickPay() {
-	window.location.href = "QuickPay.html";
-
+  window.location.href = "QuickPay.html";
+}
+function backToDashBoard() {
+  window.location.href = "Dashboard.html";
 }
 
+
 function openBankTransfer() {
-	alert("Bank Transfer – Coming Soon!");
+  alert("Bank Transfer – Coming Soon!");
 }
 
 function openIntlTransfer() {
-	alert("Bank Transfer – Coming Soon!");
-}
-function openPopup() {
-  document.getElementById("popupOverlay").style.display = "flex";
+  alert("International Transfer – Coming Soon!");
 }
 
-function closePopup() {
-  document.getElementById("popupOverlay").style.display = "none";
-}
 
-document.getElementById("combinedForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  alert("Payment submitted successfully!");
-  closePopup();
-  this.reset();
+
+// Form Submission Handling
+document.addEventListener("DOMContentLoaded", function () {
+ 
+  // Display username if available
+  const username = localStorage.getItem('username');
+  if (username) {
+    const userDisplay = document.getElementById('userDisplay');
+    if (userDisplay) {
+      userDisplay.textContent = username;
+    }
+  }
 });
-closePopup();
 
+// Logout
+function logout() {
+  localStorage.removeItem('username');
+  window.location.href = '/index.html';
+}
