@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quick Pay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="quick-pay.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h2>GLOBAL BANK</h2>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#" onclick="toggleAccountSummary()">Accounts</a>
+      <a href="#">Transfers</a>
+      <span id="userDisplay" class="user-name"></span>
+      <img src="/images/Logout_Icon.png" alt="Logout" class="logout-img" onclick="logout()" />
+    </nav>
+  </header>
+
+  <!-- Quick Pay Main Content -->
+  <div class="quick-pay-container">
+    <h1>Quick Pay</h1>
+    <div class="options">
+      <div class="card" onclick="openPopup()">
+        <i class="fas fa-university icon"></i>
+        <h2>GB Account</h2>
+        <p>Send money to another Global Bank account</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-building icon"></i>
+        <h2>Other Bank</h2>
+        <p>Transfer using IFSC code</p>
+      </div>
+      <div class="card" onclick="addBeneficiary()">
+        <i class="fas fa-user-plus icon"></i>
+        <h2>Add Beneficiary</h2>
+        <p>Add a new recipient to your list</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Form -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2>Quick Transfer - GB A/C</h2>
+
+      <form class="popup-form" id="combinedForm">
+        <div class="form-row">
+          <div class="form-group">
+            <h3>Pay New Beneficiary</h3>
+          </div>
+        </div>
+
+        <!-- Non-editable fields -->
+        <div class="form-row">
+          <div class="form-group">
+           <label for="debitName">Debit Account Name:</label>
+            <input type="text" id="debitName" readonly />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+           <label for="accountType">Account Type:</label>
+            <input type="text" id="accountType" readonly />
+          </div>
+          <div class="form-group">
+            <label for="debitNumber">Debit Account Number:</label>
+            <input type="text" id="debitNumber" readonly />
+          </div>
+        </div>
+
+        <!-- Editable beneficiary details -->
+        <h3>Enter New Beneficiary Details</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name*</label>
+            <input type="text" id="name" />
+          </div>
+          <div class="form-group">
+            <label for="accountNumber">Account Number*</label>
+            <input type="text" id="accountNumber" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reAccountNumber">Re-enter Account Number*</label>
+            <input type="text" id="reAccountNumber" />
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" />
+          </div>
+        </div>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Global Bank. All rights reserved.</p>
+  </footer>
+
+  <script src="/js/QuickPay.js"></script>
+</body>
+</html>

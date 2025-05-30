@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Pay</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="globalpay.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h2>GLOBAL BANK</h2>
+    <nav>
+      <a href="#" onclick="backToDashBoard()">Dashboard</a>
+      <a href="#" onclick="toggleAccountSummary()">Accounts</a>
+      <a href="#">Transfers</a>
+      <span id="userDisplay" class="user-name"></span>
+      <img src="/images/Logout_Icon.png" alt="Logout" class="logout-img" onclick="logout()" />
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Global Pay</h1>
+    <div class="pay-options">
+      <div class="card" id="quickPayCard">
+        <i class="fas fa-bolt icon"></i>
+        <h2>Quick Pay</h2>
+        <p>Instant transfer up to ₹5,000</p>
+        <button onclick="openQuickPay()">Send</button>
+      </div>
+      <div class="card" id="bankTransferCard">
+        <i class="fas fa-university icon"></i>
+        <h2>Bank Transfer</h2>
+        <p>Transfer to your own or other bank</p>
+        <button onclick="openBankTransfer()">Transfer</button>
+      </div>
+      <div class="card" id="intlTransferCard">
+        <i class="fas fa-globe icon"></i>
+        <h2>International Transfer</h2>
+        <p>Send funds globally with ease</p>
+        <button onclick="openIntlTransfer()">Transfer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Global Bank. All rights reserved.</p>
+  </footer>
+
+  <script src="/js/globalpay.js"></script>
+</body>
+</html>

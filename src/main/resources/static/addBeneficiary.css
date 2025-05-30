@@ -1,0 +1,162 @@
+body, html {
+	font-family: 'Poppins', sans-serif;
+	background: url('/images/Home_BackgroundImage.jpg') no-repeat center
+		center fixed;
+	background-size: cover;
+	color: white;
+	height: 100%;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 40px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+header h2 {
+	color: #ff2fb2;
+}
+
+header nav {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+header nav a {
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+header nav a:hover {
+	text-decoration: underline;
+}
+
+.logout-img {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logout-img:hover {
+	transform: scale(1.2);
+	opacity: 0.8;
+}
+
+
+
+main {
+	padding: 20px;
+	font-family: 'Poppins', sans-serif;
+}
+
+main h3 {
+	color: #ff2fb2;
+	margin-bottom: 20px;
+}
+
+.form-container {
+	font-family: 'Poppins', sans-serif;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.form-container input {
+	font-family: 'Poppins', sans-serif;
+	padding: 10px;
+	width: 200px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.form-container button {
+	font-family: 'Poppins', sans-serif;
+	padding: 10px 20px;
+	background-color: #ff2fb2;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+}
+
+th, td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header background and rounded corners on top cells */
+thead th {
+  background-color: #ff2fb2;  /* your pink color */
+  color: white;
+  font-weight: 600;
+}
+
+thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* Rounded corners for bottom row cells */
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+/* Zebra striping */
+tbody tr:nth-child(even) {
+  /* background-color: #f9f9f9; */
+}
+
+/* Hover highlight */
+tbody tr:hover {
+  background-color: light grey; /* lighter pink shade on hover */
+  cursor: pointer;
+}
+
+
+table button {
+	font-family: 'Poppins', sans-serif;
+	padding: 5px 10px;
+	background-color: #ff2fb2;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+footer {
+	text-align: center;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
