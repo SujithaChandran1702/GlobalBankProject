@@ -51,6 +51,7 @@ document.getElementById('combinedForm').addEventListener('submit', function(e) {
 			amount: amount
 		})
 	})
+<<<<<<< HEAD
 		.then(res => {
 			if (!res.ok) throw new Error("Transfer failed");
 			return res.text();
@@ -64,6 +65,20 @@ document.getElementById('combinedForm').addEventListener('submit', function(e) {
 			console.error("Transfer error:", error);
 			alert("Failed to complete transfer.");
 		});
+=======
+	.then(res => {
+		if (!res.ok) throw new Error("Transfer failed");
+		return res.text();
+	})
+	.then(response => {
+		alert("Transfer successful!");
+		closePopup();
+	})
+	.catch(error => {
+		console.error("Transfer error:", error);
+		alert("Failed to complete transfer.");
+	});
+>>>>>>> 649631ea695634758b187f4b608b72e09e8cdab4
 });
 
 // Close popup
@@ -88,7 +103,10 @@ function logout() {
 	sessionStorage.removeItem('username');
 	window.location.href = '/index.html';
 }
+<<<<<<< HEAD
 
 function addBeneficiary() {
 	window.location.href = '/addBeneficiary.html';
 }
+=======
+>>>>>>> 649631ea695634758b187f4b608b72e09e8cdab4

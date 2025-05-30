@@ -52,7 +52,6 @@ public class PageController {
 	 * ResponseEntity.status(401).body("Invalid username or password"); } }
 	 */
 
-	@GetMapping("/")
 	public String loadLoadingPage() {
 		return "redirect:/index.html";
 	}
