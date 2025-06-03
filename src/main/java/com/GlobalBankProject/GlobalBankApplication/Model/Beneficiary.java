@@ -1,6 +1,5 @@
 package com.GlobalBankProject.GlobalBankApplication.Model;
 
-import java.util.Optional;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Id;

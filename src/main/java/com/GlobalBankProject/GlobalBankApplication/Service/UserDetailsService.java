@@ -3,6 +3,7 @@ package com.GlobalBankProject.GlobalBankApplication.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.GlobalBankProject.GlobalBankApplication.Model.TransactionResponseDTO;
 import com.GlobalBankProject.GlobalBankApplication.Model.TransferRequestDTO;
 import com.GlobalBankProject.GlobalBankApplication.Model.UserDetails;
 import com.GlobalBankProject.GlobalBankApplication.Model.UserDetailsDTO;
@@ -13,7 +14,6 @@ public class UserDetailsService {
 
 	@Autowired
 	private UserDetailsRepository userRepository;
-
 
 	@Autowired
 	private EmailService emailService;
@@ -54,6 +54,15 @@ public class UserDetailsService {
 				"Dear " + receiver.getUserName() + ",\n\nYou have received ₹" + dto.getAmount() + " from "
 						+ sender.getUserName() + ".\n\nYour new balance is ₹" + receiver.getBalance()
 						+ ".\n\nThank you for using Global Bank.");
+
+		// Prepare transaction response DTO for SMS
+		TransactionResponseDTO transactionResponse = new TransactionResponseDTO();
+		transactionResponse.setAmount(dto.getAmount());
+		transactionResponse.setFromAccount(sender.getAccountNumber());
+		transactionResponse.setToAccount(receiver.getAccountNumber());
+
+		// Send SMS notifications
+		emailService.notifyUserViaSms(sender, receiver, transactionResponse);
 	}
 
 }

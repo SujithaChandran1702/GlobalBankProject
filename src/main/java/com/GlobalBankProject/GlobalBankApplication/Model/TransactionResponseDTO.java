@@ -12,20 +12,15 @@ import lombok.NoArgsConstructor;
 public class TransactionResponseDTO {
 
 	private Long id;
-
 	private String fromAccount;
 	private String fromAccountHolderName;
-
 	private String toAccount;
 	private String toAccountHolderName;
-
 	private String accountType;
-
 	private double amount;
 	private double balance;
-
 	private LocalDateTime timestamp;
-
 	private String transactionType;
+	private LocalDateTime date;
 
 }

@@ -35,7 +35,7 @@ public class UserDetails {
 	private String email;
 
 	@Column(name = "phone_number")
-	@Pattern(regexp = "\\d{10}", message = "Phone number must be exactly 10 digits")
+	@Pattern(regexp = "\\+91\\d{10}", message = "Phone number must be in format +91XXXXXXXXXX")
 	private String phoneNumber;
 
 	@Column(name = "pan_number")

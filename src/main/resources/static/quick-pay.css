@@ -2,8 +2,7 @@
 body {
 	margin: 0;
 	font-family: 'Poppins', sans-serif;
-	background: url('images/Home_BackgroundImage.jpg') no-repeat center
-		center fixed;
+	background: url('images/Home_BackgroundImage.jpg') no-repeat center center fixed;
 	background-size: cover;
 	color: white;
 	box-sizing: border-box;
@@ -18,6 +17,7 @@ body {
 h2 {
 	margin-top: -10px;
 }
+
 /* Header */
 header {
 	position: fixed;
@@ -94,8 +94,6 @@ h1 {
 }
 
 .card {
-	/*   background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px; */
 	background: rgba(0, 0, 0, 0.5);
 	border: 1px solid #ff2fb2;
 	padding: 30px;
@@ -108,10 +106,6 @@ h1 {
 	cursor: pointer;
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(10px);
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-	transition: transform 0.3s ease;
-	cursor: pointer;
-	/*   color: white; */
 }
 
 .card:hover {
@@ -137,16 +131,16 @@ h1 {
 /* Popup Overlay */
 .popup-overlay {
 	position: fixed;
-	top: 64px; /* below header */
+	top: 64px;
 	left: 0;
 	width: 100%;
-	height: calc(100vh - 64px - 40px); /* between header and footer */
+	height: calc(100vh - 64px - 40px);
 	background: rgba(0, 0, 0, 0.6);
 	display: none;
 	justify-content: center;
 	align-items: center;
 	z-index: 1000;
-	overflow: hidden; /* prevent scrollbar on overlay */
+	overflow: hidden;
 }
 
 .popup-overlay.open {
@@ -156,29 +150,28 @@ h1 {
 /* Popup Content */
 .popup-content {
 	background-color: #1a1a1a;
-	/* background: rgba(0, 0, 0, 0.85); */
 	padding: 25px 30px;
 	border-radius: 12px;
 	width: 600px;
-	max-height: 100%; /* fit inside overlay */
+	max-height: 100%;
 	box-sizing: border-box;
 	color: white;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 	position: relative;
-	overflow: hidden; /* no scroll on popup */
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 }
 
-/* Form inside popup: allow scrolling if too tall */
+/* Form inside popup */
 .popup-form {
 	overflow-y: auto;
 	max-height: calc(100vh - 64px - 40px - 100px);
-	/* space for popup padding and title */
+	margin-top: -29px;
+	margin-left: 20px;
 }
 
-/* Hide scrollbar for popup content */
 .popup-content::-webkit-scrollbar {
 	display: none;
 }
@@ -195,11 +188,6 @@ h1 {
 }
 
 /* Form Styling */
-.popup-form {
-	margin-top: -29px;
-	margin-left: 20px;
-}
-
 .popup-form h3 {
 	font-size: 18px;
 	margin-top: 20px;
@@ -223,7 +211,8 @@ h1 {
 	font-weight: 600;
 }
 
-.popup-form input, .popup-form select {
+.popup-form input,
+.popup-form select {
 	width: 70%;
 	padding: 8px 10px;
 	border-radius: 8px;
@@ -232,6 +221,20 @@ h1 {
 	box-sizing: border-box;
 	background-color: #f3f3f3;
 	color: #333;
+}
+
+.popup-form select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D'%23333'%20height%3D'20'%20viewBox%3D'0%200%2024%2024'%20width%3D'20'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M7%2010l5%205%205-5z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 16px 16px;
+}
+
+.popup-form select:invalid {
+	color: #888;
 }
 
 .popup-form input[readonly] {
@@ -267,6 +270,6 @@ footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	height: 51px; /* set height so popup calc works */
+	height: 51px;
 	z-index: 1001;
 }

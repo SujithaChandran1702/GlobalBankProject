@@ -24,9 +24,9 @@ function toggleBalance() {
 	window.location.href = "history.html";
 }*/
 
-function goToHistory(){
+function goToHistory() {
 	console.log("Going to History page");
-	window.location.href="history.html";
+	window.location.href = "history.html";
 }
 
 // Logout function
@@ -61,6 +61,14 @@ function showAccountDetails() {
 			document.getElementById("panNumber").textContent = data.pan;
 			document.getElementById("email").textContent = data.email;
 			document.getElementById("phoneNumber").textContent = data.phone;
+
+			if (data.accountNumber) {
+				localStorage.setItem("accountNumber", data.accountNumber);
+				console.log("Stored accountNumber in localStorage:", data.accountNumber);
+			} else {
+				console.warn("Account number not found in data");
+			}
+
 			document.getElementById("accountDetails").style.display = "block";
 		})
 		.catch(err => console.error("Failed to load account details:", err));

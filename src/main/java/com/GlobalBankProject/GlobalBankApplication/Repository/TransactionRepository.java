@@ -12,8 +12,9 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 	List<Transaction> findByTimestampBetween(LocalDateTime startDate, LocalDateTime endDate);
 
 	List<Transaction> findAllByOrderByTimestampDesc();
-	
+
 	List<Transaction> findByFromAccountOrToAccountOrderByTimestampDesc(String fromAccount, String toAccount);
 
+	List<Transaction> findByFromAccountOrToAccount(String fromAccount, String toAccount);
 
 }

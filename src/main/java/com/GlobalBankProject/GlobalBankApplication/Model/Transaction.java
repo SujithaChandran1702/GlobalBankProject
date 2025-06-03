@@ -15,19 +15,16 @@ public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String fromAccount;
 	private String fromAccountHolderName;
-
 	private String toAccount;
 	private String toAccountHolderName;
-
 	private String accountType;
 	private double amount;
 	private double balance;
-//	private String transactionType;
-
+	private String transactionType;
 	private LocalDateTime timestamp;
+	private LocalDateTime date;
 
 	@PrePersist
 	public void setTimestamp() {

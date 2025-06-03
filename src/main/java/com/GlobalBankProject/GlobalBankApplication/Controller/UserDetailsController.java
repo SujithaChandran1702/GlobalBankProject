@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.GlobalBankProject.GlobalBankApplication.Model.TransferRequestDTO;
 //import com.GlobalBankProject.GlobalBankApplication.Model.TransferRequestDTO;
 import com.GlobalBankProject.GlobalBankApplication.Model.UserDetailsDTO;
+import com.GlobalBankProject.GlobalBankApplication.Service.EmailService;
 import com.GlobalBankProject.GlobalBankApplication.Service.UserDetailsService;
 
 @RestController
@@ -21,24 +22,27 @@ public class UserDetailsController {
 	@Autowired
 	UserDetailsService userService;
 
+	@Autowired
+	private EmailService emailService;
+
 	@GetMapping("/summary/{userName}")
 	public ResponseEntity<UserDetailsDTO> getUserDetails(@PathVariable("userName") String userName) {
 		UserDetailsDTO userDTO = userService.getUserDetailsByUserName(userName);
 		return ResponseEntity.ok(userDTO);
 
 	}
-	
+
 	@PostMapping("/transfer")
-	  public ResponseEntity<String> transferMoney(@RequestBody TransferRequestDTO dto) {
-        try {
-        	userService.transferMoney(dto);
-            return ResponseEntity.ok("Transfer successful and email sent!");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-        	e.printStackTrace();
-            return ResponseEntity.internalServerError().body("Transfer failed due to server error");
-        }
-    }
+	public ResponseEntity<String> transferMoney(@RequestBody TransferRequestDTO dto) {
+		try {
+			userService.transferMoney(dto);
+			return ResponseEntity.ok("Transfer successful and email & SMS sent!");
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.internalServerError().body("Transfer failed due to server error");
+		}
+	}
 
 }

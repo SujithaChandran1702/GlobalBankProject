@@ -1,16 +1,21 @@
 package com.GlobalBankProject.GlobalBankApplication.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.GlobalBankProject.GlobalBankApplication.Model.Transaction;
 import com.GlobalBankProject.GlobalBankApplication.Model.TransactionResponseDTO;
 import com.GlobalBankProject.GlobalBankApplication.Repository.TransactionRepository;
 import com.GlobalBankProject.GlobalBankApplication.Repository.UserDetailsRepository;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
 
 @Service
 public class TransactionService {
@@ -68,23 +73,22 @@ public class TransactionService {
 		} else {
 			transactions = transactionRepository.findAllByOrderByTimestampDesc();
 		}
-
 		// ✅ Filter only transactions where the user is either sender or receiver
 		transactions = transactions.stream()
 				.filter(t -> userAccount.equals(t.getFromAccount()) || userAccount.equals(t.getToAccount()))
 				.collect(Collectors.toList());
-
 		// ✅ Optional search
 		if (searchText != null && !searchText.trim().isEmpty()) {
 			String lowerSearch = searchText.toLowerCase();
 			transactions = transactions.stream()
 					.filter(t -> t.getFromAccount().toLowerCase().contains(lowerSearch)
 							|| t.getToAccount().toLowerCase().contains(lowerSearch)
-							|| (t.getFromAccountHolderName() != null && t.getFromAccountHolderName().toLowerCase().contains(lowerSearch))
-							|| (t.getToAccountHolderName() != null && t.getToAccountHolderName().toLowerCase().contains(lowerSearch)))
+							|| (t.getFromAccountHolderName() != null
+									&& t.getFromAccountHolderName().toLowerCase().contains(lowerSearch))
+							|| (t.getToAccountHolderName() != null
+									&& t.getToAccountHolderName().toLowerCase().contains(lowerSearch)))
 					.collect(Collectors.toList());
 		}
-
 		// ✅ Convert to Response DTO
 		return transactions.stream().map(t -> {
 			TransactionResponseDTO dto = new TransactionResponseDTO();
@@ -97,7 +101,6 @@ public class TransactionService {
 			dto.setAmount(t.getAmount());
 			dto.setBalance(t.getBalance());
 			dto.setTimestamp(t.getTimestamp());
-
 			// ✅ Set transaction type
 			if (userAccount.equals(t.getToAccount())) {
 				dto.setTransactionType("Credit");
@@ -108,6 +111,71 @@ public class TransactionService {
 			}
 			return dto;
 		}).collect(Collectors.toList());
+	}
+
+	public List<TransactionResponseDTO> getTransactionsForUser(String accountNumber) {
+		List<Transaction> transactions = transactionRepository
+				.findByFromAccountOrToAccountOrderByTimestampDesc(accountNumber, accountNumber);
+		return transactions.stream().map(this::mapToDTO).collect(Collectors.toList());
+	}
+
+	public List<TransactionResponseDTO> getTransactionsForUserByDate(String accountNumber, LocalDateTime startDate,
+			LocalDateTime endDate) {
+		List<Transaction> transactions = transactionRepository
+				.findByFromAccountOrToAccount(accountNumber, accountNumber).stream()
+				.filter(tx -> !tx.getTimestamp().isBefore(startDate) && !tx.getTimestamp().isAfter(endDate))
+				.collect(Collectors.toList());
+		return transactions.stream().map(this::mapToDTO).collect(Collectors.toList());
+	}
+
+	public ResponseEntity<ByteArrayResource> generateTransactionPdf(String accountNumber) {
+		List<Transaction> transactions = transactionRepository.findByFromAccountOrToAccount(accountNumber,
+				accountNumber);
+
+		try {
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			Document document = new Document(null);
+			PdfWriter.getInstance(document, out);
+			document.open();
+			Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
+			Paragraph title = new Paragraph("Transaction History - " + accountNumber, fontTitle);
+			title.setAlignment(Element.ALIGN_CENTER);
+			document.add(title);
+			document.add(new Paragraph(" ")); // space
+
+			PdfPTable table = new PdfPTable(6);
+			table.setWidthPercentage(100);
+			table.addCell("Date");
+			table.addCell("From");
+			table.addCell("To");
+			table.addCell("Type");
+			table.addCell("Amount");
+			table.addCell("Balance");
+			for (Transaction tx : transactions) {
+				table.addCell(tx.getTimestamp().toLocalDate().toString());
+				table.addCell(tx.getFromAccount());
+				table.addCell(tx.getToAccount());
+				table.addCell(tx.getTransactionType());
+				table.addCell(String.valueOf(tx.getAmount()));
+				table.addCell(String.valueOf(tx.getBalance()));
+			}
+
+			document.add(table);
+			document.close();
+
+			ByteArrayResource resource = new ByteArrayResource(out.toByteArray());
+
+			return ResponseEntity.ok().header("Content-Disposition", "attachment;filename=Transaction_History.pdf")
+					.contentLength(out.toByteArray().length).body(resource);
+		} catch (Exception e) {
+			throw new RuntimeException("Failed to generate PDF", e);
+		}
+	}
+
+	private TransactionResponseDTO mapToDTO(Transaction tx) {
+		return new TransactionResponseDTO(tx.getId(), tx.getFromAccount(), tx.getFromAccountHolderName(),
+				tx.getToAccount(), tx.getToAccountHolderName(), tx.getAccountType(), tx.getAmount(), tx.getBalance(),
+				tx.getTimestamp(), tx.getTransactionType(), tx.getDate());
 	}
 
 }

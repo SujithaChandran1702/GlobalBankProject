@@ -42,5 +42,4 @@ public class BeneficiaryController {
 			return ResponseEntity.internalServerError().build();
 		}
 	}
-
 }
